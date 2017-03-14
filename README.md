@@ -1,2 +1,2 @@
 # JavaCodeMetrics
-A tool to measure some metrics of Java code.
+A tool to measure some metrics of Java code
