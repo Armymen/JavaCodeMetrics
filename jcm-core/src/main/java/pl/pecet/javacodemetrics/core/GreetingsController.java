@@ -2,11 +2,13 @@ package pl.pecet.javacodemetrics.core;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class GreetingsController {
 
 	private static final String TEMPLATE = "Hello, %s!";

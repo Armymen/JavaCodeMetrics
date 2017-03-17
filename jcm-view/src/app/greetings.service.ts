@@ -15,7 +15,7 @@ export class GreetingsService {
 
     getGreeting(name: string): Promise<Greeting> {
         const url = `${this.greetingsUrl}/greeting?name=${name}`;
-        return this.http.get(this.greetingsUrl)
+        return this.http.get(url)
                .toPromise()
                .then(response => response.json().data as Greeting)
                .catch(this.handleError);

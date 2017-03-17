@@ -5,7 +5,7 @@ import { GreetingsService } from './greetings.service';
 
 @Component({
   selector: 'my-app',
-  template: `<h1>Hello {{greeting.name}}. Your id is {{greeting.id}}.</h1>`,
+  template: `<h1>{{greeting.content}}. Your id is {{greeting.id}}.</h1>`,
   providers: [GreetingsService]
 })
 
@@ -20,6 +20,6 @@ export class AppComponent implements OnInit {
   }
 
   setGreeting(): void {
-    this.greetingsService.getGreeting(name).then(greeting => this.greeting = greeting);
+    this.greetingsService.getGreeting(this.name).then(greeting => this.greeting = greeting);
   }
 }
