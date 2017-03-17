@@ -5,13 +5,13 @@ import { GreetingsService } from './greetings.service';
 
 @Component({
   selector: 'my-app',
-  template: `<h1>{{greeting.content}}. Your id is {{greeting.id}}.</h1>`,
+  template: '<h1>{{greeting.content}} Your id is {{greeting.id}}.</h1>',
   providers: [GreetingsService]
 })
 
 export class AppComponent implements OnInit { 
   name = 'Pawel';
-  greeting: Greeting;
+  greeting: Greeting = {id: -1, content: 'default'};
 
   constructor(private greetingsService: GreetingsService) {}
 
