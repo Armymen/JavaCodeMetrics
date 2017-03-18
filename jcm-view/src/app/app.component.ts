@@ -11,7 +11,7 @@ import { GreetingsService } from './greetings.service';
 
 export class AppComponent implements OnInit { 
   name = 'Pawel';
-  greeting: Greeting = {id: -1, content: 'default'};
+  greeting: Greeting = {id: -1, content: ''};
 
   constructor(private greetingsService: GreetingsService) {}
 
