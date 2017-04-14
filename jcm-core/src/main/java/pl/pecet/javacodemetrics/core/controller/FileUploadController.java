@@ -11,18 +11,19 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 public class FileUploadController {
-	
+
 	@PostMapping("/upload")
-	public String handleFileUpload(@RequestParam("file") MultipartFile file) {
-		String name = file.getName();
+	public String handleFileUpload(@RequestParam("file") final MultipartFile file) {
+		final String name = file.getName();
 		if (!file.isEmpty()) {
 			try {
-				byte[] bytes = file.getBytes();
-				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(name + "-uploaded")));
+				final byte[] bytes = file.getBytes();
+				final BufferedOutputStream stream = new BufferedOutputStream(
+						new FileOutputStream(new File(name + "-uploaded")));
 				stream.write(bytes);
 				stream.close();
 				return "You successfully uploaded " + name + " into " + name + "-uploaded!";
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				return "You failed to upload " + name + " => " + e.getMessage();
 			}
 		} else {
