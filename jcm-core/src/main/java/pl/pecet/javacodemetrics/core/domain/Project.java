@@ -2,11 +2,14 @@ package pl.pecet.javacodemetrics.core.domain;
 
 import org.springframework.data.annotation.Id;
 
+import lombok.Data;
+
+@Data
 public class Project {
 
 	@Id
-	private Long id;
+	private final Long id;
 
-	private String name;
+	private final String name;
 
 }
