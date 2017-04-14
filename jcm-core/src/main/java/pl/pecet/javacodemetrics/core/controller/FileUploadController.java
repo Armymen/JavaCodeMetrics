@@ -1,4 +1,4 @@
-package pl.pecet.javacodemetrics.core;
+package pl.pecet.javacodemetrics.core.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
