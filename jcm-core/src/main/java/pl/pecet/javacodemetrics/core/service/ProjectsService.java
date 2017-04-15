@@ -1,5 +1,7 @@
 package pl.pecet.javacodemetrics.core.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -13,6 +15,10 @@ public class ProjectsService {
 	private final ProjectsRepository projectsRepository;
 
 	public Project addNewProject(final String name) {
-		return projectsRepository.insert(new Project(1L, "p1"));
+		return projectsRepository.save(new Project(name));
+	}
+
+	public List<Project> getAllProjects() {
+		return projectsRepository.findAll();
 	}
 }

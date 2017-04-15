@@ -8,7 +8,7 @@ import lombok.Data;
 public class Project {
 
 	@Id
-	private final Long id;
+	private String id;
 
 	private final String name;
 

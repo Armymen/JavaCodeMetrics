@@ -4,6 +4,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import pl.pecet.javacodemetrics.core.domain.Project;
 
-public interface ProjectsRepository extends MongoRepository<Project, Long>{
+public interface ProjectsRepository extends MongoRepository<Project, String> {
 
 }
