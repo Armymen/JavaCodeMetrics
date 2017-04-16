@@ -21,4 +21,8 @@ public class ProjectsService {
 	public List<Project> getAllProjects() {
 		return projectsRepository.findAll();
 	}
+
+	public Project getProject(final String name) {
+		return projectsRepository.findByName(name);
+	}
 }

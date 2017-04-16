@@ -3,8 +3,8 @@ package pl.pecet.javacodemetrics.core.controller;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
@@ -22,8 +22,13 @@ public class ProjectsController {
 		return projectsService.getAllProjects();
 	}
 
-	@PutMapping("addNewProject")
-	public Project addNewProject(@RequestParam("name") final String name) {
+	@GetMapping("project/{name}")
+	public Project getProject(@PathVariable final String name) {
+		return projectsService.getProject(name);
+	}
+
+	@PutMapping("addNewProject/{name}")
+	public Project addNewProject(@PathVariable final String name) {
 		return projectsService.addNewProject(name);
 	}
 }
