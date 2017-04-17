@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.pecet.javacodemetrics.core.domain.Greeting;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 public class GreetingsController {
 
 	private static final String TEMPLATE = "Hello, %s!";

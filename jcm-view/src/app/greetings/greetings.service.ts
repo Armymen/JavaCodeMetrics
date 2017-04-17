@@ -1,5 +1,5 @@
 import { Injectable }    from '@angular/core';
-import { Http } from '@angular/http';
+import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -14,7 +14,8 @@ export class GreetingsService {
 
     getGreeting(name: string): Promise<Greeting> {
         const url = `${this.greetingsUrl}/greeting?name=${name}`;
-        return this.http.get(url)
+        let authHeaders = new Headers({'Authorization': 'Basic ' + btoa('user:passwd')});
+        return this.http.get(url, {headers: authHeaders})
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);

@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.web.cors.CorsUtils;
 
 @Configuration
 @EnableWebSecurity
@@ -13,8 +14,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(final HttpSecurity http) throws Exception {
-		http.httpBasic().and().authorizeRequests().antMatchers("/index.html", "/").permitAll().anyRequest()
-				.authenticated();
+		http.httpBasic().and().authorizeRequests().antMatchers("/index.html", "/").permitAll()
+				.requestMatchers(CorsUtils::isPreFlightRequest).permitAll().anyRequest().authenticated();
 	}
 
 	@Autowired
