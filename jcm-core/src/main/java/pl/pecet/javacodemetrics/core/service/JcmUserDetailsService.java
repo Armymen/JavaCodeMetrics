@@ -31,6 +31,10 @@ public class JcmUserDetailsService implements UserDetailsService {
 		return new User(user.getName(), user.getPassword(), getAuthorities(user));
 	}
 
+	public JcmUser save(final JcmUser user) {
+		return userRepository.save(user);
+	}
+
 	private Collection<SimpleGrantedAuthority> getAuthorities(final JcmUser user) {
 		return user.getRoles().stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
 	}
