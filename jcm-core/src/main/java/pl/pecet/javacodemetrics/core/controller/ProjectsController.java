@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
@@ -27,7 +27,7 @@ public class ProjectsController {
 		return projectsService.getProject(name);
 	}
 
-	@PutMapping("addNewProject/{name}")
+	@PostMapping("addNewProject/{name}")
 	public Project addNewProject(@PathVariable final String name) {
 		return projectsService.addNewProject(name);
 	}
