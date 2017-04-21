@@ -16,7 +16,7 @@ import pl.pecet.javacodemetrics.core.repository.UserRepository;
 
 @Service
 @AllArgsConstructor
-public class JcmUserDetailsService implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
 	private final UserRepository userRepository;
 

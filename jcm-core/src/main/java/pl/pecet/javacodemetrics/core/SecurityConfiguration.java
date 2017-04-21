@@ -5,18 +5,18 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.web.cors.CorsUtils;
 
 import lombok.AllArgsConstructor;
-import pl.pecet.javacodemetrics.core.service.JcmUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
 @AllArgsConstructor
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-	private final JcmUserDetailsService userDetailsService;
+	private final UserDetailsService userDetailsService;
 
 	@Override
 	protected void configure(final HttpSecurity http) throws Exception {
