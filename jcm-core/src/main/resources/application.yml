@@ -1,0 +1,10 @@
+server:
+  port: 12800
+spring:
+  http:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  data:
+    mongodb:
+      database: jcmdb
