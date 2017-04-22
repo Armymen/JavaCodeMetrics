@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 public class FileUploadController {
 
-	@PostMapping("/upload")
+	@PostMapping("upload")
 	public String handleFileUpload(@RequestParam("file") final MultipartFile file) {
 		final String name = file.getName();
 		if (!file.isEmpty()) {

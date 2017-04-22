@@ -25,7 +25,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		final JcmUser user = userRepository.findByName(username);
 
 		if (user == null) {
-			throw new UsernameNotFoundException(String.format("User {} not found.", username));
+			throw new UsernameNotFoundException(String.format("User %s not found.", username));
 		}
 
 		return new User(user.getName(), user.getPassword(), getAuthorities(user));
