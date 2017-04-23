@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsUtils;
 
@@ -29,13 +30,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		return new JwtAuthenticationTokenFilter();
 	}
 
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+
 	@Override
 	protected void configure(final HttpSecurity http) throws Exception {
 		http.csrf().disable().exceptionHandling()
 				.authenticationEntryPoint(new Http401AuthenticationEntryPoint("'Bearer token_type=\"JWT\"'")).and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-				.antMatchers(HttpMethod.GET, "/").permitAll()
-				.antMatchers("/${jwt.route.authentication.path}", "/createUser").permitAll()
+				.antMatchers(HttpMethod.GET, "/").permitAll().antMatchers("/auth", "/createUser").permitAll()
 				.requestMatchers(CorsUtils::isPreFlightRequest).permitAll().anyRequest().authenticated().and().headers()
 				.cacheControl();
 
@@ -44,6 +49,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 	}
 }
