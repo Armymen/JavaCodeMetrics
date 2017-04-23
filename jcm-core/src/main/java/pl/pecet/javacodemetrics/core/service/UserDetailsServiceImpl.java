@@ -9,12 +9,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
 import pl.pecet.javacodemetrics.core.domain.JcmUser;
 import pl.pecet.javacodemetrics.core.repository.UserRepository;
 
 @Service
+@Transactional(readOnly = true)
 @AllArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
 
@@ -29,10 +31,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		}
 
 		return new User(user.getName(), user.getPassword(), getAuthorities(user));
-	}
-
-	public JcmUser save(final JcmUser user) {
-		return userRepository.save(user);
 	}
 
 	private Collection<SimpleGrantedAuthority> getAuthorities(final JcmUser user) {
