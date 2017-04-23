@@ -9,6 +9,7 @@ import { AuthGuard } from './_guards/index';
 import { AlertComponent } from './_alerts/index';
 import { GreetingComponent } from './greetings/greeting.component';
 import { LoginComponent } from './login/index';
+import { RegisterComponent } from './register/index';
 
 @NgModule({
   imports: [ 
@@ -20,6 +21,7 @@ import { LoginComponent } from './login/index';
       AppComponent, 
       GreetingComponent,
       LoginComponent,
+      RegisterComponent,
       AlertComponent ],
   providers: [ 
       AuthGuard,
