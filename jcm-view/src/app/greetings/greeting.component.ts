@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Greeting } from './greeting';
-import { GreetingsService } from './greetings.service';
+import { Greeting } from '../_models/index';
+import { GreetingsService } from '../_services/index';
 
 @Component({
   selector: 'greeting',
@@ -21,6 +21,6 @@ export class GreetingComponent implements OnInit {
   }
 
   setGreeting(): void {
-    this.greetingsService.getGreeting(this.name).then(greeting => this.greeting = greeting);
+    this.greetingsService.getGreeting(this.name).subscribe(greeting => this.greeting = greeting); 
   }
 }

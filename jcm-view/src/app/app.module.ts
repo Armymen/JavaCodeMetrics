@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }    from '@angular/http';
 import { AppComponent }  from './app.component';
 import { GreetingComponent } from './greetings/greeting.component';
-import { AuthenticationService } from './login/authentication.service';
+import { AuthenticationService } from './_services/index';
 
 @NgModule({
   imports: [ 
