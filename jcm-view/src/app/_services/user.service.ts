@@ -7,8 +7,11 @@ import { User } from '../_models/index';
 export class UserService {
     constructor(private http: Http) {}
 
+    private createUserUrl = 'http://localhost:12800/createUser';
+    private headers = new Headers({'Content-Type': 'application/json'});
+
     create(user: User) {
-        let createUserUrl = 'http://localhost:12800/createUser';
-        return this.http.post(createUserUrl, user).map((response: Response) => response.json());
+        return this.http.post(this.createUserUrl, user, {headers: this.headers})
+            .map((response: Response) => response.json());
     }
 }
