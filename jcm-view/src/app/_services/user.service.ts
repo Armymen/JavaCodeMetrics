@@ -9,6 +9,6 @@ export class UserService {
 
     create(user: User) {
         let createUserUrl = 'http://localhost:12800/createUser';
-        return this.http.post('/cre', user).map((response: Response) => response.json());
+        return this.http.post(createUserUrl, user).map((response: Response) => response.json());
     }
 }
