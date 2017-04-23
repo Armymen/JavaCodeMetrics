@@ -10,6 +10,7 @@ import { AlertComponent } from './_alerts/index';
 import { GreetingComponent } from './greetings/greeting.component';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
+import { EqualValidator } from './_validators/index';
 
 @NgModule({
   imports: [ 
@@ -22,7 +23,8 @@ import { RegisterComponent } from './register/index';
       GreetingComponent,
       LoginComponent,
       RegisterComponent,
-      AlertComponent ],
+      AlertComponent,
+      EqualValidator ],
   providers: [ 
       AuthGuard,
       AuthenticationService, 
