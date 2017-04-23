@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }    from '@angular/http';
 import { AppComponent }  from './app.component';
 import { GreetingComponent } from './greetings/greeting.component';
+import { AuthenticationService } from './login/authentication.service';
 
 @NgModule({
   imports: [ 
@@ -11,6 +12,7 @@ import { GreetingComponent } from './greetings/greeting.component';
   declarations: [ 
       AppComponent, 
       GreetingComponent ],
+  providers: [ AuthenticationService ],
   bootstrap: [ AppComponent ] 
 })
 export class AppModule { }
