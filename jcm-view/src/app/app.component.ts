@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  moduleId: module.id,
   selector: 'my-app',
-  template: '<greeting name="Pawel"></greeting>',
+  templateUrl: '../../../app/app.component.html',
 })
 
 export class AppComponent {}

@@ -1,18 +1,31 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }    from '@angular/http';
+import { FormsModule }    from '@angular/forms';
 import { AppComponent }  from './app.component';
+import { routing }        from './app.routing';
+import { AuthenticationService, GreetingsService, AlertService } from './_services/index';
+import { AuthGuard } from './_guards/index';
+import { AlertComponent } from './_alerts/index';
 import { GreetingComponent } from './greetings/greeting.component';
-import { AuthenticationService } from './_services/index';
+import { LoginComponent } from './login/index';
 
 @NgModule({
   imports: [ 
       BrowserModule,
-      HttpModule ],
+      HttpModule,
+      FormsModule,
+      routing ],
   declarations: [ 
       AppComponent, 
-      GreetingComponent ],
-  providers: [ AuthenticationService ],
+      GreetingComponent,
+      LoginComponent,
+      AlertComponent ],
+  providers: [ 
+      AuthGuard,
+      AuthenticationService, 
+      GreetingsService, 
+      AlertService ],
   bootstrap: [ AppComponent ] 
 })
 export class AppModule { }

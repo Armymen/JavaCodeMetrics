@@ -4,14 +4,14 @@ import { Greeting } from '../_models/index';
 import { GreetingsService } from '../_services/index';
 
 @Component({
+  moduleId: module.id,
   selector: 'greeting',
-  template: '<h1>{{greeting.content}} Your id is {{greeting.id}}.</h1>',
-  providers: [GreetingsService]
+  template: `<h2>{{greeting.content}} Your id is {{greeting.id}}.</h2><p><a [routerLink]="['/login']">Logout</a></p>`
 })
 
 export class GreetingComponent implements OnInit {
   @Input()
-  name: string;
+  name: string = 'Pawel';
   greeting: Greeting = {id: -1, content: ''};
 
   constructor(private greetingsService: GreetingsService) {}
