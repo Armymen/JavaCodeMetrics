@@ -1,33 +1,40 @@
 package pl.pecet.javacodemetrics.core.controller;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.IOException;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import lombok.AllArgsConstructor;
+import pl.pecet.javacodemetrics.core.service.StorageService;
+
 @RestController
+@AllArgsConstructor
 public class FileUploadController {
 
-	@PostMapping("upload")
-	public String handleFileUpload(@RequestParam("file") final MultipartFile file) {
-		final String name = file.getName();
-		if (!file.isEmpty()) {
-			try {
-				final byte[] bytes = file.getBytes();
-				final BufferedOutputStream stream = new BufferedOutputStream(
-						new FileOutputStream(new File(name + "-uploaded")));
-				stream.write(bytes);
-				stream.close();
-				return "You successfully uploaded " + name + " into " + name + "-uploaded!";
-			} catch (final Exception e) {
-				return "You failed to upload " + name + " => " + e.getMessage();
-			}
+	private static final String ZIP_EXTENSION = ".zip";
+
+	private final StorageService storageService;
+
+	@PostMapping("upload/{name}")
+	public String handleFileUpload(@RequestParam final MultipartFile file, @PathVariable final String name) {
+		final String originalFileName = file.getOriginalFilename();
+		final String resultFileName = name + ZIP_EXTENSION;
+
+		if (!originalFileName.toLowerCase().endsWith(ZIP_EXTENSION)) {
+			return String.format("You failed to upload %s because the file is not ZIP archive.", originalFileName);
+		} else if (file.isEmpty()) {
+			return String.format("You failed to upload %s because the file was empty.", originalFileName);
 		} else {
-			return "You failed to upload " + name + " because the file was empty.";
+			try {
+				storageService.store(resultFileName, file);
+				return String.format("You successfully uploaded %s into %s.", originalFileName, resultFileName);
+			} catch (final IOException e) {
+				return String.format("You failed to upload %s due to %s.", originalFileName, e.getMessage());
+			}
 		}
 	}
 }
