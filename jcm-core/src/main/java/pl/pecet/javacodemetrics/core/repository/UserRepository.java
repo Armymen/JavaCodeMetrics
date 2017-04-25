@@ -6,5 +6,5 @@ import pl.pecet.javacodemetrics.core.domain.JcmUser;
 
 public interface UserRepository extends MongoRepository<JcmUser, String> {
 
-	JcmUser findByName(final String name);
+	JcmUser findOneByName(final String name);
 }

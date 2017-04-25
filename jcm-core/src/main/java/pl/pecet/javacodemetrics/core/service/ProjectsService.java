@@ -25,6 +25,6 @@ public class ProjectsService {
 	}
 
 	public Project getProject(final String name) {
-		return projectsRepository.findByName(name);
+		return projectsRepository.findOneByName(name);
 	}
 }
