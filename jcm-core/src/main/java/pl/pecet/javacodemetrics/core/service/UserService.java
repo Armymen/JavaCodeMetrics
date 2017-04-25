@@ -20,16 +20,22 @@ public class UserService {
 	private final PasswordEncoder passwordEncoder;
 
 	public JcmUser create(final String username, final String password) {
-		final JcmUser newUser = new JcmUser(username, Arrays.asList("ROLE_USER"));
-		newUser.setPassword(passwordEncoder.encode(password));
-
-		return userRepository.save(newUser);
+		return createOrUpdateUser(username, password, () -> new JcmUser(username, Arrays.asList("ROLE_USER")));
 	}
 
 	public JcmUser updatePassword(final String username, final String password) {
-		final JcmUser user = userRepository.findOneByName(username);
+		return createOrUpdateUser(username, password, () -> userRepository.findOneByName(username));
+	}
+
+	private JcmUser createOrUpdateUser(final String username, final String password, final UserProducer userProducer) {
+		final JcmUser user = userProducer.getUser();
 		user.setPassword(passwordEncoder.encode(password));
 
 		return userRepository.save(user);
+	}
+
+	@FunctionalInterface
+	private static interface UserProducer {
+		JcmUser getUser();
 	}
 }
