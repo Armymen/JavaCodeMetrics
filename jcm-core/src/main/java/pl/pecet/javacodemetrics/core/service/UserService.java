@@ -20,8 +20,16 @@ public class UserService {
 	private final PasswordEncoder passwordEncoder;
 
 	public JcmUser create(final String username, final String password) {
-		final JcmUser newUser = new JcmUser(username, passwordEncoder.encode(password), Arrays.asList("ROLE_USER"));
+		final JcmUser newUser = new JcmUser(username, Arrays.asList("ROLE_USER"));
+		newUser.setPassword(passwordEncoder.encode(password));
 
 		return userRepository.save(newUser);
+	}
+
+	public JcmUser updatePassword(final String username, final String password) {
+		final JcmUser user = userRepository.findOneByName(username);
+		user.setPassword(passwordEncoder.encode(password));
+
+		return userRepository.save(user);
 	}
 }

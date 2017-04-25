@@ -18,7 +18,7 @@ public class JcmUser {
 	@Indexed(unique = true)
 	private final String name;
 
-	private final String password;
+	private String password;
 
 	private final List<String> roles;
 
