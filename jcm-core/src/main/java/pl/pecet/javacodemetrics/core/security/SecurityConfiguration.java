@@ -1,7 +1,5 @@
 package pl.pecet.javacodemetrics.core.security;
 
-import java.util.Arrays;
-
 import org.springframework.boot.autoconfigure.security.Http401AuthenticationEntryPoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -42,7 +40,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		final CorsConfiguration configuration = new CorsConfiguration();
-		configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+		configuration.addAllowedOrigin("http://localhost:3000");
 		configuration.addAllowedMethod("*");
 		configuration.addAllowedHeader("*");
 		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
