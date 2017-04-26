@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -30,7 +29,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			throw new UsernameNotFoundException(String.format("User %s not found.", username));
 		}
 
-		return new User(user.getName(), user.getPassword(), getAuthorities(user));
+		return new UserDetailsImpl(user.getName(), user.getPassword(), getAuthorities(user), user.getProjects());
 	}
 
 	private Collection<SimpleGrantedAuthority> getAuthorities(final JcmUser user) {

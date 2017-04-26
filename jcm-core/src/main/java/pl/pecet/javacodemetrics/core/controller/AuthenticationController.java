@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.pecet.javacodemetrics.core.security.auth.JwtAuthenticationRequest;
 import pl.pecet.javacodemetrics.core.security.auth.JwtAuthenticationResponse;
 import pl.pecet.javacodemetrics.core.security.auth.JwtTokenUtil;
+import pl.pecet.javacodemetrics.core.service.UserDetailsImpl;
 
 @RestController
 public class AuthenticationController {
@@ -46,10 +47,12 @@ public class AuthenticationController {
 				.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(),
 						authenticationRequest.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+		final UserDetailsImpl userDetails = (UserDetailsImpl) userDetailsService
+				.loadUserByUsername(authenticationRequest.getUsername());
 		final String token = jwtTokenUtil.generateToken(userDetails);
 
-		return ResponseEntity.ok(new JwtAuthenticationResponse(token));
+		return ResponseEntity
+				.ok(new JwtAuthenticationResponse(userDetails.getUsername(), token, userDetails.getProjects()));
 	}
 
 	@GetMapping("user")
