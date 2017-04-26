@@ -1,5 +1,7 @@
 package pl.pecet.javacodemetrics.core.security;
 
+import java.util.Arrays;
+
 import org.springframework.boot.autoconfigure.security.Http401AuthenticationEntryPoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +15,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsUtils;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import lombok.AllArgsConstructor;
 import pl.pecet.javacodemetrics.core.security.auth.JwtAuthenticationTokenFilter;
@@ -35,14 +39,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 
+	@Bean
+	CorsConfigurationSource corsConfigurationSource() {
+		final CorsConfiguration configuration = new CorsConfiguration();
+		configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+		configuration.addAllowedMethod("*");
+		configuration.addAllowedHeader("*");
+		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration);
+		return source;
+	}
+
 	@Override
 	protected void configure(final HttpSecurity http) throws Exception {
-		http.csrf().disable().exceptionHandling()
+		http.cors().and().csrf().disable().exceptionHandling()
 				.authenticationEntryPoint(new Http401AuthenticationEntryPoint("'Bearer token_type=\"JWT\"'")).and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
 				.antMatchers(HttpMethod.GET, "/").permitAll().antMatchers("/auth", "/createUser").permitAll()
-				.requestMatchers(CorsUtils::isPreFlightRequest).permitAll().anyRequest().authenticated().and().headers()
-				.cacheControl();
+				.anyRequest().authenticated().and().headers().cacheControl();
 
 		http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
 	}
