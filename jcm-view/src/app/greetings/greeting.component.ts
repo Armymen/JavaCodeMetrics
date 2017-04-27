@@ -11,10 +11,12 @@ import { GreetingsService } from '../_services/index';
 
 export class GreetingComponent implements OnInit {
   @Input()
-  name: string = 'Pawel';
+  name: string;
   greeting: Greeting = {id: -1, content: ''};
 
-  constructor(private greetingsService: GreetingsService) {}
+  constructor(private greetingsService: GreetingsService) {
+    this.name = JSON.parse(localStorage.getItem('currentUser')).username;
+  }
 
   ngOnInit(): void {
     this.setGreeting();
