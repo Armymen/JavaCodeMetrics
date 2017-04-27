@@ -6,11 +6,5 @@ import { Router } from '@angular/router';
     templateUrl: '../../../app/user_profile/user.profile.component.html'
 })
 
-export class RegisterComponent {
-    model: any = {};
-    loading = false;
-
-    constructor(
-        private router: Router) { }
-    
+export class UserProfileComponent {
 }
