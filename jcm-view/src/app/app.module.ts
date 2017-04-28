@@ -8,6 +8,7 @@ import { AuthenticationService, GreetingsService, AlertService, UserService } fr
 import { AuthGuard } from './_guards/index';
 import { AlertComponent } from './_alerts/index';
 import { GreetingComponent } from './greetings/greeting.component';
+import { UserProfileComponent } from './user_profile/index';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 import { EqualValidator } from './_validators/index';
@@ -21,6 +22,7 @@ import { EqualValidator } from './_validators/index';
   declarations: [ 
       AppComponent, 
       GreetingComponent,
+      UserProfileComponent,
       LoginComponent,
       RegisterComponent,
       AlertComponent,
