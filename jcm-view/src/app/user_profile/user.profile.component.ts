@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { User } from '../_models/index';
 import { UserService } from '../_services/index';
 
 @Component({
@@ -10,7 +9,7 @@ import { UserService } from '../_services/index';
 })
 
 export class UserProfileComponent implements OnInit {
-    currentUser: User;
+    currentUser: any = {};
 
     constructor(private userService: UserService) {}
 
