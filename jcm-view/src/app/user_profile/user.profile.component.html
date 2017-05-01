@@ -2,7 +2,7 @@
     <h1>Hello {{currentUser.username}}!</h1>
 </div>
 <div>
-    <div *ngIf="currentUser.projects?.length > 0">
+    <div *ngIf="currentUser.projects?.length > 0; else emptyProjects">
         <h3>Your projects:</h3>
         <ul>
             <li *ngFor="let project of currentUser.projects">
@@ -10,9 +10,9 @@
             </li>
         </ul>
     </div>
-    <div *ngIf="!(currentUser.projects?.length > 0)">
+    <ng-template #emptyProjects>
         <h3>You have no projects.</h3>
-    </div>
+    </ng-template>
 </div>
 <div>
     <p>
