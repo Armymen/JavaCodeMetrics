@@ -53,7 +53,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.cors().and().csrf().disable().exceptionHandling()
 				.authenticationEntryPoint(new Http401AuthenticationEntryPoint("'Bearer token_type=\"JWT\"'")).and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-				.antMatchers(HttpMethod.GET, "/").permitAll().antMatchers("/auth", "/createUser").permitAll()
+				.antMatchers(HttpMethod.GET, "/").permitAll().antMatchers("/auth", "/users/create").permitAll()
 				.anyRequest().authenticated().and().headers().cacheControl();
 
 		http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);

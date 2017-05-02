@@ -34,12 +34,12 @@ public class ProjectsController {
 		return projectsService.getAllProjects();
 	}
 
-	@GetMapping("project/{name}")
+	@GetMapping("projects/{name}")
 	public Project getProject(@PathVariable final String name) {
 		return projectsService.getProject(name);
 	}
 
-	@PostMapping("addNewProject/{name}")
+	@PostMapping("projects/add/{name}")
 	public Project addNewProject(final HttpServletRequest request, @PathVariable final String name) {
 		final String token = request.getHeader(tokenHeader);
 		final String username = jwtTokenUtil.getUsernameFromToken(token);

@@ -17,7 +17,7 @@ export class UserService {
 
     create(username: string, password: string) {
         let jsonHeaders = new Headers({'Content-Type': 'application/json'});
-        return this.http.post(this.baseUrl + '/createUser', JSON.stringify({username: username, password: password}), {headers: jsonHeaders})
+        return this.http.post(this.baseUrl + '/users/create', JSON.stringify({username: username, password: password}), {headers: jsonHeaders})
             .map((response: Response) => response.json());
     }
 }

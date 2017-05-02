@@ -41,7 +41,7 @@ public class UserController {
 		return userDetailsService.loadUserByUsername(username);
 	}
 
-	@PostMapping("createUser")
+	@PostMapping("users/create")
 	public JcmUser create(@RequestBody final JwtAuthenticationRequest userCredentials) {
 		return userService.create(userCredentials.getUsername(), userCredentials.getPassword());
 	}
