@@ -23,7 +23,7 @@ export class UserProfileComponent implements OnInit {
             .subscribe(
                 data => {
                     this.setCurrentUser();
-                    this.alertService.success(`Project '${this.model.newProject}' was successfully added.`, true);
+                    this.alertService.success(`Project '${this.model.newProject}' was successfully added.`, false);
                 },
                 error => {
                     this.alertService.error(error);

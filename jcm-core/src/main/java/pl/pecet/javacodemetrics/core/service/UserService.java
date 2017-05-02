@@ -4,14 +4,12 @@ import java.util.Arrays;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
 import pl.pecet.javacodemetrics.core.domain.JcmUser;
 import pl.pecet.javacodemetrics.core.repository.UserRepository;
 
 @Service
-@Transactional
 @AllArgsConstructor
 public class UserService {
 

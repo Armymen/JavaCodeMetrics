@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
 import pl.pecet.javacodemetrics.core.domain.JcmUser;
@@ -13,7 +12,6 @@ import pl.pecet.javacodemetrics.core.repository.ProjectsRepository;
 import pl.pecet.javacodemetrics.core.repository.UserRepository;
 
 @Service
-@Transactional
 @AllArgsConstructor
 public class ProjectsService {
 
