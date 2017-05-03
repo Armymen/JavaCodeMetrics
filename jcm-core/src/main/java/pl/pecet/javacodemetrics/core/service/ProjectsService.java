@@ -20,6 +20,20 @@ public class ProjectsService {
 	private final UserRepository userRepository;
 
 	public Project addNewProject(final String username, final String name) {
+		final Project project = projectsRepository.save(new Project(name, username));
+		updateProjectsForUser(username, name);
+		return project;
+	}
+
+	public List<Project> getAllProjects() {
+		return projectsRepository.findAll();
+	}
+
+	public Project getProject(final String username, final String name) {
+		return projectsRepository.findOneByUsernameAndName(username, name);
+	}
+
+	private void updateProjectsForUser(final String username, final String name) {
 		final JcmUser user = userRepository.findOneByName(username);
 
 		if (user.getProjects() == null) {
@@ -27,15 +41,5 @@ public class ProjectsService {
 		}
 		user.getProjects().add(name);
 		userRepository.save(user);
-
-		return projectsRepository.save(new Project(name, username));
-	}
-
-	public List<Project> getAllProjects() {
-		return projectsRepository.findAll();
-	}
-
-	public Project getProject(final String name) {
-		return projectsRepository.findOneByName(name);
 	}
 }

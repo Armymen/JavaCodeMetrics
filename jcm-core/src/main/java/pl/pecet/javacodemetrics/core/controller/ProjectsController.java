@@ -35,14 +35,17 @@ public class ProjectsController {
 	}
 
 	@GetMapping("projects/{name}")
-	public Project getProject(@PathVariable final String name) {
-		return projectsService.getProject(name);
+	public Project getProject(final HttpServletRequest request, @PathVariable final String name) {
+		return projectsService.getProject(getUsername(request), name);
 	}
 
 	@PostMapping("projects/add/{name}")
 	public Project addNewProject(final HttpServletRequest request, @PathVariable final String name) {
+		return projectsService.addNewProject(getUsername(request), name);
+	}
+
+	private String getUsername(final HttpServletRequest request) {
 		final String token = request.getHeader(tokenHeader);
-		final String username = jwtTokenUtil.getUsernameFromToken(token);
-		return projectsService.addNewProject(username, name);
+		return jwtTokenUtil.getUsernameFromToken(token);
 	}
 }
