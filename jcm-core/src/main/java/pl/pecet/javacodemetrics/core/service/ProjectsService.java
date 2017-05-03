@@ -28,7 +28,7 @@ public class ProjectsService {
 		user.getProjects().add(name);
 		userRepository.save(user);
 
-		return projectsRepository.save(new Project(name));
+		return projectsRepository.save(new Project(name, username));
 	}
 
 	public List<Project> getAllProjects() {
