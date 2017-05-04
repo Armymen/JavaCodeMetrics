@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { UserService, ProjectService, AlertService } from '../_services/index';
+import { UserService } from '../_services/index';
 
 @Component({
     moduleId: module.id,
@@ -9,25 +9,12 @@ import { UserService, ProjectService, AlertService } from '../_services/index';
 })
 
 export class UserProfileComponent implements OnInit {
-    model: any = {};
     currentUser: any = {};
 
-    constructor(private userService: UserService, private projectService: ProjectService, private alertService: AlertService) {}
+    constructor(private userService: UserService) {}
 
     ngOnInit() {
         this.setCurrentUser();
-    }
-
-    addProject() {
-        this.projectService.addProject(this.model.newProject)
-            .subscribe(
-                data => {
-                    this.setCurrentUser();
-                    this.alertService.success(`Project '${this.model.newProject}' was successfully added.`, false);
-                },
-                error => {
-                    this.alertService.error(error);
-                });
     }
 
     setCurrentUser() {

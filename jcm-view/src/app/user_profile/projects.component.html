@@ -1,0 +1,22 @@
+<div *ngIf="currentUser.projects?.length > 0; else emptyProjects">
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let project of currentUser.projects">
+            <a href="#" class="list-group-item-action">{{project}}</a>
+        </li>
+    </ul>
+</div>
+<ng-template #emptyProjects>
+    <p>You have no projects</p>
+</ng-template>
+<form name="form" (ngSubmit)="f.form.valid && addProject()" #f="ngForm" novalidate>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !newProject.valid }">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="New project"
+                name="newProject" [(ngModel)]="model.newProject" #newProject="ngModel" required>
+            <span class="input-group-btn">
+                <button class="btn btn-primary">Add</button>
+            </span>  
+        </div>
+        <div *ngIf="f.submitted && !newProject.valid" class="help-block">Project name is required</div>
+    </div>    
+</form>

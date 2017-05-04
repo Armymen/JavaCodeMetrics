@@ -7,7 +7,7 @@ import { routing }        from './app.routing';
 import { AuthenticationService, AlertService, UserService, ProjectService } from './_services/index';
 import { AuthGuard } from './_guards/index';
 import { AlertComponent } from './_alerts/index';
-import { UserProfileComponent } from './user_profile/index';
+import { UserProfileComponent, ProjectsComponent } from './user_profile/index';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 import { EqualValidator } from './_validators/index';
@@ -21,6 +21,7 @@ import { EqualValidator } from './_validators/index';
   declarations: [ 
       AppComponent, 
       UserProfileComponent,
+      ProjectsComponent,
       LoginComponent,
       RegisterComponent,
       AlertComponent,
