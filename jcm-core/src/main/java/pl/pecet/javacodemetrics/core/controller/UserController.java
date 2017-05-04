@@ -45,4 +45,9 @@ public class UserController {
 	public JcmUser create(@RequestBody final JwtAuthenticationRequest userCredentials) {
 		return userService.create(userCredentials.getUsername(), userCredentials.getPassword());
 	}
+
+	@PostMapping("users/changePassword")
+	public JcmUser changePassword(@RequestBody final JwtAuthenticationRequest userCredentials) {
+		return userService.updatePassword(userCredentials.getUsername(), userCredentials.getPassword());
+	}
 }

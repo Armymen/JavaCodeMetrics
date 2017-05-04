@@ -20,4 +20,10 @@ export class UserService {
         return this.http.post(this.baseUrl + '/users/create', JSON.stringify({username: username, password: password}), {headers: jsonHeaders})
             .map((response: Response) => response.json());
     }
+
+    changePassword(username: string, password: string) {
+        let jsonHeaders = new Headers({'Content-Type': 'application/json', 'Authorization': this.authenticationService.getToken()});
+        return this.http.post(this.baseUrl + '/users/changePassword', JSON.stringify({username: username, password: password}), {headers: jsonHeaders})
+            .map((response: Response) => response.json());
+    }
 }

@@ -20,6 +20,11 @@ export class AuthenticationService {
                 }
             });
     }
+
+    checkPassword(username: string, password: string) {
+        return this.http.post(this.authUrl, JSON.stringify({username: username, password: password}), {headers: this.headers})
+            .map((response: Response) => response.json());
+    }
  
     getToken(): String {
       var currentUser = JSON.parse(localStorage.getItem('currentUser'));
