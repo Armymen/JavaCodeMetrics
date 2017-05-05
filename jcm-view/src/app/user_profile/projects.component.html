@@ -1,7 +1,7 @@
 <div *ngIf="currentUser.projects?.length > 0; else emptyProjects">
     <ul class="list-group">
         <li class="list-group-item" *ngFor="let project of currentUser.projects">
-            <a href="#" class="list-group-item-action">{{project}}</a>
+            <a href="project/{{project}}" class="list-group-item-action">{{project}}</a>
         </li>
     </ul>
 </div>

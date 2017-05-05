@@ -14,7 +14,10 @@ export class ProjectsComponent {
     currentUser: any;
     model: any = {};
 
-    constructor(private userService: UserService, private projectService: ProjectService, private alertService: AlertService) {}
+    constructor(
+        private userService: UserService, 
+        private projectService: ProjectService, 
+        private alertService: AlertService) {}
 
     addProject() {
         this.projectService.addProject(this.model.newProject)

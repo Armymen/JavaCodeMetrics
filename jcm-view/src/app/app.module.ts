@@ -10,6 +10,7 @@ import { AlertComponent } from './_alerts/index';
 import { UserProfileComponent, ProjectsComponent, ChangePasswordComponent } from './user_profile/index';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
+import { ProjectDetailsComponent } from './project_details/index';
 import { EqualValidator } from './_validators/index';
 
 @NgModule({
@@ -23,6 +24,7 @@ import { EqualValidator } from './_validators/index';
       UserProfileComponent,
       ProjectsComponent,
       ChangePasswordComponent,
+      ProjectDetailsComponent,
       LoginComponent,
       RegisterComponent,
       AlertComponent,
