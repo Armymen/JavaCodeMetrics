@@ -11,8 +11,13 @@
 			</div>
 			<div class="panel-body">
                 <label class="control-label">Select File</label>
-                <input id="file-input-id" type="file" class="file-primary" accept=".zip">           
+                <input id="file-input-id" type="file" class="file">           
 			</div>
 		</div>
     </div>
 </div>
+<script>
+    $('#file-input-id').fileupload({
+        allowedFileExtensions: ['zip']
+    });    
+</script>
