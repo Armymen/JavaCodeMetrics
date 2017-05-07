@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Data
 @Document(collection = "projects")
-@CompoundIndexes({ @CompoundIndex(name = "name_username", def = "{'name' : 1, 'username': 1}", unique = true) })
+@CompoundIndexes({ @CompoundIndex(name = "name_username", def = "{'name': 1, 'username': 1}", unique = true) })
 public class Project {
 
 	@Id
@@ -21,5 +21,5 @@ public class Project {
 
 	private final String username;
 
-	private List<CodeMetrics> codeMetrics;
+	private List<CodeMetrics> codeMetrics; 
 }
