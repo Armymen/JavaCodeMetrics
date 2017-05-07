@@ -1,11 +1,19 @@
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <h1>Project: {{project.name}}</h1>
-        <h3>17 lat programowania :)</h3>
     </div>
 </div>
 <div class="row">
-    <div class="col-md-12">
-        <h3>{{projectJSON}}</h3>
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Upload</h3>
+			</div>
+			<div class="panel-body">
+                <label class="btn btn-default btn-file">
+                    Choose ZIP archive <input type="file" accept=".zip" hidden>
+                </label>                
+			</div>
+		</div>
     </div>
 </div>

@@ -13,7 +13,6 @@ import 'rxjs/add/operator/switchMap';
 
 export class ProjectDetailsComponent implements OnInit {
     project: any = {};
-    projectJSON: string;
 
     constructor(
         private route: ActivatedRoute,
@@ -23,10 +22,7 @@ export class ProjectDetailsComponent implements OnInit {
     ngOnInit() {
         this.route.params
             .switchMap((params: Params) => this.projectService.getProject(params['name']))
-            .subscribe(project => {
-                this.project = project;
-                this.projectJSON = JSON.stringify(this.project);
-            });
+            .subscribe(project => this.project = project);
     }
 
     goBack(): void {
