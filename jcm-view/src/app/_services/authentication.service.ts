@@ -27,9 +27,9 @@ export class AuthenticationService {
     }
  
     getToken(): String {
-      var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-      var token = currentUser && currentUser.token;
-      return token ? token : "";
+        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        var token = currentUser && currentUser.token;
+        return token ? token : "";
     }
 
     logout(): void {
