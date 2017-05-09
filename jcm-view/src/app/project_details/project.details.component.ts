@@ -27,7 +27,10 @@ export class ProjectDetailsComponent implements OnInit {
             .switchMap((params: Params) => this.projectService.getProject(params['name']))
             .subscribe(project => this.project = project);
         $(this.rootElement.nativeElement).find("#file-input-id").fileinput({
-            'allowedFileExtensions': ['zip']
+            'allowedFileExtensions': ['zip'],
+            'fileActionSettings': {
+                'showZoom': false
+            }
         });
     }
 
