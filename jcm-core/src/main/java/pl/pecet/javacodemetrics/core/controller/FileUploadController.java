@@ -30,18 +30,18 @@ public class FileUploadController {
 
 		if (!originalFileName.toLowerCase().endsWith(ZIP_EXTENSION)) {
 			return new FileUploadStatus(ERROR_STATUS,
-					String.format("You failed to upload %s because this file is not ZIP archive", originalFileName));
+					String.format("Failed to upload '%s' because this file is not ZIP archive", originalFileName));
 		} else if (file.isEmpty()) {
 			return new FileUploadStatus(ERROR_STATUS,
-					String.format("You failed to upload %s because this file was empty", originalFileName));
+					String.format("Failed to upload '%s' because this file was empty", originalFileName));
 		} else {
 			try {
 				storageService.store(resultFileName, file);
-				return new FileUploadStatus(SUCCESS_STATUS,
-						String.format("You successfully uploaded %s into %s", originalFileName, resultFileName));
+				return new FileUploadStatus(SUCCESS_STATUS, String
+						.format("The file '%s' into '%s' was successfully uploaded", originalFileName, resultFileName));
 			} catch (final IOException e) {
 				return new FileUploadStatus(ERROR_STATUS,
-						String.format("You failed to upload %s due to %s", originalFileName, e.getMessage()));
+						String.format("Failed to upload '%s' due to %s", originalFileName, e.getMessage()));
 			}
 		}
 	}

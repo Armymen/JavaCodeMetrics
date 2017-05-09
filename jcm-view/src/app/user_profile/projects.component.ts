@@ -24,7 +24,7 @@ export class ProjectsComponent {
             .subscribe(
                 data => {
                     this.setCurrentUser();
-                    this.alertService.success(`Project '${this.model.newProject}' was successfully added.`, false);
+                    this.alertService.success(`Project '${this.model.newProject}' was successfully added.`);
                 },
                 error => {
                     this.alertService.error(error);

@@ -41,7 +41,11 @@ export class ProjectDetailsComponent implements OnInit {
             this.projectService.uploadFile(fileList[0], this.project.username + '|' + this.project.name)
                 .subscribe(
                     data => {
-                        this.alertService.success('SUCCESS', false);
+                        if (data.status === "success") {
+                            this.alertService.success(data.message);
+                        } else {
+                            this.alertService.error(data.message);
+                        }
                     },
                     error => {
                         this.alertService.error(error);
