@@ -17,23 +17,31 @@ public class FileUploadController {
 
 	private static final String ZIP_EXTENSION = ".zip";
 
+	private static final String SUCCESS_STATUS = "success";
+
+	private static final String ERROR_STATUS = "error";
+
 	private final StorageService storageService;
 
 	@PostMapping("upload/{name}")
-	public String handleFileUpload(@RequestParam final MultipartFile file, @PathVariable final String name) {
+	public FileUploadStatus handleFileUpload(@RequestParam final MultipartFile file, @PathVariable final String name) {
 		final String originalFileName = file.getOriginalFilename();
 		final String resultFileName = name + ZIP_EXTENSION;
 
 		if (!originalFileName.toLowerCase().endsWith(ZIP_EXTENSION)) {
-			return String.format("You failed to upload %s because the file is not ZIP archive.", originalFileName);
+			return new FileUploadStatus(ERROR_STATUS,
+					String.format("You failed to upload %s because the file is not ZIP archive", originalFileName));
 		} else if (file.isEmpty()) {
-			return String.format("You failed to upload %s because the file was empty.", originalFileName);
+			return new FileUploadStatus(ERROR_STATUS,
+					String.format("You failed to upload %s because the file was empty", originalFileName));
 		} else {
 			try {
 				storageService.store(resultFileName, file);
-				return String.format("You successfully uploaded %s into %s.", originalFileName, resultFileName);
+				return new FileUploadStatus(SUCCESS_STATUS,
+						String.format("You successfully uploaded %s into %s", originalFileName, resultFileName));
 			} catch (final IOException e) {
-				return String.format("You failed to upload %s due to %s.", originalFileName, e.getMessage());
+				return new FileUploadStatus(ERROR_STATUS,
+						String.format("You failed to upload %s due to %s", originalFileName, e.getMessage()));
 			}
 		}
 	}
