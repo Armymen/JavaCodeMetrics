@@ -20,4 +20,12 @@ export class ProjectService {
         return this.http.get(`${this.baseUrl}/projects/${name}`, {headers: authHeaders})
             .map((response: Response) => response.json());    
     }
+
+    uploadFile(file: File, name: string) {
+        let formData = new FormData();
+        formData.append('file', file, file.name);
+        let authHeaders = new Headers({'Authorization': this.authenticationService.getToken()});
+        return this.http.post(`${this.baseUrl}/upload/${name}`, formData, {headers: authHeaders})
+            .map((response: Response) => response.json());
+    }
 }

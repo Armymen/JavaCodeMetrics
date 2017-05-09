@@ -26,7 +26,7 @@ export class AuthenticationService {
             .map((response: Response) => response.json());
     }
  
-    getToken(): String {
+    getToken(): string {
         var currentUser = JSON.parse(localStorage.getItem('currentUser'));
         var token = currentUser && currentUser.token;
         return token ? token : "";

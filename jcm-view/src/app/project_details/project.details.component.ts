@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { ProjectService } from '../_services/index';
+import { ProjectService, AlertService } from '../_services/index';
 
 import 'rxjs/add/operator/switchMap';
 
@@ -20,6 +20,7 @@ export class ProjectDetailsComponent implements OnInit {
         private rootElement: ElementRef,
         private route: ActivatedRoute,
         private projectService: ProjectService,
+        private alertService: AlertService,
         private location: Location) {}
 
     ngOnInit() {
@@ -34,7 +35,21 @@ export class ProjectDetailsComponent implements OnInit {
         });
     }
 
-    goBack(): void {
+    fileUpload(event: any) {
+        let fileList: FileList = event.target.files;
+        if (fileList.length > 0) {
+            this.projectService.uploadFile(fileList[0], this.project.username + '|' + this.project.name)
+                .subscribe(
+                    data => {
+                        this.alertService.success('SUCCESS', false);
+                    },
+                    error => {
+                        this.alertService.error(error);
+                });    
+        }
+    }
+
+    goBack() {
         this.location.back();
     }
 }
