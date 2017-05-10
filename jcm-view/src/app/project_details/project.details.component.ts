@@ -38,7 +38,8 @@ export class ProjectDetailsComponent implements OnInit {
                         'headers': {
                             'Authorization': this.authenticationService.getToken()
                         }
-                    }
+                    },
+                    'maxFileSize': 10240
                 });
             });
     }
