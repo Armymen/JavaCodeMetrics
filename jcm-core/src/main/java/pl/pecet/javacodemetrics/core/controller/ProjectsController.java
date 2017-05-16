@@ -10,24 +10,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import pl.pecet.javacodemetrics.core.domain.Project;
 import pl.pecet.javacodemetrics.core.security.auth.JwtTokenUtil;
 import pl.pecet.javacodemetrics.core.service.ProjectsService;
 
 @RestController
+@RequiredArgsConstructor
 public class ProjectsController {
 
 	@Value("${jwt.header}")
 	private String tokenHeader;
 
+	@NonNull
 	private final ProjectsService projectsService;
 
+	@NonNull
 	private final JwtTokenUtil jwtTokenUtil;
-
-	public ProjectsController(final ProjectsService projectsService, final JwtTokenUtil jwtTokenUtil) {
-		this.projectsService = projectsService;
-		this.jwtTokenUtil = jwtTokenUtil;
-	}
 
 	@GetMapping("projects")
 	public List<Project> getAllProjects() {

@@ -10,29 +10,28 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import pl.pecet.javacodemetrics.core.domain.JcmUser;
 import pl.pecet.javacodemetrics.core.security.auth.JwtAuthenticationRequest;
 import pl.pecet.javacodemetrics.core.security.auth.JwtTokenUtil;
 import pl.pecet.javacodemetrics.core.service.UserService;
 
 @RestController
+@RequiredArgsConstructor
 public class UserController {
 
 	@Value("${jwt.header}")
 	private String tokenHeader;
 
+	@NonNull
 	private final UserService userService;
 
+	@NonNull
 	private final UserDetailsService userDetailsService;
 
+	@NonNull
 	private final JwtTokenUtil jwtTokenUtil;
-
-	public UserController(final UserService userService, final UserDetailsService userDetailsService,
-			final JwtTokenUtil jwtTokenUtil) {
-		this.userService = userService;
-		this.userDetailsService = userDetailsService;
-		this.jwtTokenUtil = jwtTokenUtil;
-	}
 
 	@GetMapping("user")
 	public UserDetails getCurrentUser(final HttpServletRequest request) {
